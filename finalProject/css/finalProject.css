@@ -1,0 +1,105 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font:12pt Verdana, Arila, Georgia, sans-serif;
+    display:inline-flex;
+	overflow:auto;
+	background:url('../media/background.jpg');
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+nav {
+    width:200px;
+    margin-top:12px;
+    margin-right:18px;
+    
+}
+nav a{
+    text-decoration: none;
+}
+nav ul{
+    list-style-type:none;
+    margin:12px 0px 0px 0px;
+    padding:0px;
+}
+nav ul li{
+    border-bottom:2px solid black;
+}
+nav ul li a:link,nav ul li a:visited{
+    font-weight:bold;
+    display:block;
+    padding:3px 0px 3px 3px;
+    background-color:green;
+    color:white;
+}
+nav ul li a:gover,nav ul li a:active{
+    font-weight:bold;
+    display:block;
+    padding:3px 0px 3px 3px;
+    background-color:lightgreen;
+    color:darkgreen;
+}
+nav ul ul{
+    margin:0px;
+    text-indent:20px;
+}
+nav ul ul li a:link,nav ul ul li a:visited{
+    font-size:10pt;
+    font-weight:bold;
+    display:block;
+    padding:3px 0px 3px 3px;
+    background-color:green;
+    color:white;
+}
+nav ul ul li a:hover,nav ul ul li a:active{
+    font-size:10pt;
+    font-weight:bold;
+    display:block;
+    padding:3px 0px 3px 3px;
+    background-color:white;
+    color:green;
+}
+section a:link{
+    text-decoration:none;
+    font-weight:bold;
+    color:green;
+}
+section{
+    width:550px;
+    height:400px;
+}
+[class*="col-"]{
+    width:100%;/*this is being overriden in tablet and desktop*/
+    float:left;/*setting defaults for everything including tablet and desktop*/
+    padding:15px;/* setting defaults for everything including tablet and desktop*/
+}
+@media only screen and (min-width:600px){
+    .col-m-1{width:8.33%;}
+    .col-m-2{width:16.66%;}
+    .col-m-3{width:25%;}
+    .col-m-4{width:33.33%;}
+    .col-m-5{width:41.66%;}
+    .col-m-6{width:50%;}
+    .col-m-7{width:58.33%;}
+    .col-m-8{width:66.66%;}
+    .col-m-9{width:75%;}
+    .col-m-10{width:83.33%;}
+    .col-m-11{width:9166%;}
+    .col-m-12{width:100%;}
+}
+@media only screen and (min-width:768px){
+    .col-1{width:8.33%;}
+    .col-2{width:16.66%;}
+    .col-3{width:25%;}
+    .col-4{width:33.33%;}
+    .col-5{width:41.66%;}
+    .col-6{width:50%;}
+    .col-7{width:58.33%;}
+    .col-8{width:66.66%;}
+    .col-9{width:75%;}
+    .col-10{width:83.33%;}
+    .col-11{width:9166%;}
+    .col-12{width:100%;}
+}
