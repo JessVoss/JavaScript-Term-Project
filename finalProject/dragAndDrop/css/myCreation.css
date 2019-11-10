@@ -1,0 +1,11 @@
+body{
+    background-color: lightskyblue;
+}
+section{
+  display:flex;
+  flex-wrap:wrap;
+}
+p{
+	flex:1;
+	width:200px;
+}
