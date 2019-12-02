@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<H1></H1>
+<H2>Dont Step on a Trap</H2>
+<table id=grid>
+</table>
+<BUTTON onclick="generateGrid();">Reset The Grid</BUTTON>
+<style>
+   
+    BODY {
+      background: black;
+      color: #DDDDDD;
+      font-family: courier new;
+      text-align: center;
+    }
+    
+    H1 {
+      text-align: center;
+      font-size: 14pt;
+      font-weight: normal;
+    }
+    #grid {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    #grid TR TD{
+      border:1px solid white;
+      background: #999999;
+      width: 16px;
+      height: 16px;
+      text-align: center;
+    }
+    
+    #grid TR TD.clicked {
+        background: #333333;
+    }
+    /*
+    #grid TR TD.trap {
+        background: #1f0353;
+    }*/
+    #grid TR TD.Wolf{
+      background: #03531b;
+    }
+    
+    BUTTON {
+      margin: 12px;
+
+    }
+</style>
+<script>
+var grid = document.getElementById("grid");
+var testMode = false; //Turn this variable to true to see where the traps are
+generateGrid();
+
+function generateGrid() {
+  //generate 10 by 10 grid
+  grid.innerHTML="";
+  for (var i=0; i<10; i++) {
+    row = grid.insertRow(i);
+    for (var j=0; j<10; j++) {
+      cell = row.insertCell(j);
+      cell.onclick = function() { clickCell(this); };
+     /* var trap = document.createAttribute("data-trap");       
+      trap.value = "false";             
+      cell.setAttributeNode(trap);*/
+      var wolf = document.createAttribute("data-wolf");
+      wolf.value = "false";
+      cell.setAttributeNode(wolf);
+    }
+  }
+  //addTraps();
+  addWolves();
+}
+/*
+function addTraps() {
+  //Add traps randomly
+  for (var i=0; i<20; i++) {
+    var row = Math.floor(Math.random() * 10);
+    var col = Math.floor(Math.random() * 10);
+    var cell = grid.rows[row].cells[col];
+    cell.setAttribute("data-trap","true");
+    if (testMode) cell.innerHTML="X";
+  }
+} */
+function addWolves() {
+  //Add traps randomly
+  for (var i=0; i<10; i++) {
+    var row = Math.floor(Math.random() * 10);
+    var col = Math.floor(Math.random() * 10);
+    var cell = grid.rows[row].cells[col];
+    cell.setAttribute("data-wolf","true");
+    if (testMode) cell.innerHTML="X";
+  }
+}
+/*
+function revealTraps() {
+    //Highlight all traps in blue
+    for (var i=0; i<10; i++) {
+      for(var j=0; j<10; j++) {
+        var cell = grid.rows[i].cells[j];
+        if (cell.getAttribute("data-trap")=="true") cell.className="trap";
+      }
+    }
+}*/
+function revealWolves() {
+    // reveal wolves in green
+    for (var i=0; i<10; i++) {
+      for(var j=0; j<10; j++) {
+        var cell = grid.rows[i].cells[j];
+        if (cell.getAttribute("data-wolf")=="true") cell.className="wolf";
+      }
+    }
+}
+
+function checkLevelCompletion() {
+  var levelComplete = true;
+    for (var i=0; i<10; i++) {
+      for(var j=0; j<10; j++) {
+        if ((grid.rows[i].cells[j].getAttribute("data-wolf")=="true") && (grid.rows[i].cells[j].innerHTML=="")) levelComplete=false;
+      }
+  }
+  if (levelComplete) {
+    alert("You Win!");
+    revealWolves();
+  }
+}
+
+function clickCell(cell) {
+  //Check if the end-user clicked on a trap
+  if (cell.getAttribute("data-wolf")=="true") {
+    
+ 
+    alert("Game Over");
+  } else {
+    cell.className="clicked";
+    //Count and display the number of adjacent traps
+   // var trapCount=0;
+    var wolfCount=0;
+    var cellRow = cell.parentNode.rowIndex;
+    var cellCol = cell.cellIndex;
+    //alert(cellRow + " " + cellCol);
+    /*
+    for (var i=Math.max(cellRow-1,0); i<=Math.min(cellRow+1,9); i++) {
+      for(var j=Math.max(cellCol-1,0); j<=Math.min(cellCol+1,9); j++) {
+        if (grid.rows[i].cells[j].getAttribute("data-trap")=="true") trapCount++;
+      }
+    }*/
+    for (var i=Math.max(cellRow-1,0); i<=Math.min(cellRow+1,9); i++) {
+      for(var j=Math.max(cellCol-1,0); j<=Math.min(cellCol+1,9); j++) {
+        if (grid.rows[i].cells[j].getAttribute("data-wolf")=="true") wolfCount++;
+        for(var k=0; k < 10; k++){
+           
+
+        }
+      }
+    }
+    //cell.innerHTML=trapCount;
+    cell.innerHTML=wolfCount;
+
+    if (wolfCount!=0) { 
+      //Reveal all adjacent cells as they do not have a trap
+      for (var i=Math.max(cellRow-1,0); i<=Math.min(cellRow+1,9); i++) {
+        for(var j=Math.max(cellCol-1,0); j<=Math.min(cellCol+1,9); j++) {
+          //Recursive Call
+          if (grid.rows[i].cells[j].innerHTML=="") clickCell(grid.rows[i].cells[j]);
+        }
+      }
+    }
+    checkLevelCompletion();
+  }
+}</script>
+</html>

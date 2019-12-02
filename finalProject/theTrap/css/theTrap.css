@@ -1,0 +1,44 @@
+
+    BODY {
+        background: url("../media/darkForest.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #DDDDDD;
+        font-family: courier new;
+        text-align: center;
+      }
+      
+      H1 {
+        text-align: center;
+        font-size: 14pt;
+        font-weight: normal;
+      }
+      #grid {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      #grid TR TD{
+        border:1px solid white;
+        background: #999999;
+        width: 16px;
+        height: 16px;
+        text-align: center;
+      }
+      
+      #grid TR TD.clicked {
+          background: black;
+      }
+      
+      #grid TR TD.trap {
+         background: #1f0353;
+      }
+   
+      BUTTON {
+        margin: 14px;
+        background:black;
+        color:blanchedalmond;
+      }
+     
+      /*  belongs in HTML for theTrap but isnt allowing me to put to comments
+<button onclick="startTime()">Click for Progress bar</button>*/
